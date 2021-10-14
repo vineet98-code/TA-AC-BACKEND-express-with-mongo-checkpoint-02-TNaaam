@@ -1,0 +1,69 @@
+<%- include('partials/header') -%>
+
+<section class="main_section">
+    <div class="container">
+      <h2 class="event_list">List of Events</h2>
+      <div class="flex">
+        <aside class="aside flex-25">
+          <h3 class="categories_heading">Search By</h3>
+          <div class="line"></div>
+          <h3 class="categories_heading category_heading_new">Category</h3>
+
+          <% allCategories.forEach(category=> { %>
+          <a href="/category?name=<%= category %> ">
+            <button class="btn category_btn"><%= category %></button>
+          </a>
+          <% }) %>
+          <div class="line"></div>
+          <h3 class="categories_heading">Location</h3>
+
+          <% allLocations.forEach(location=> { %>
+          <a href="/category/location?location=<%= location %> ">
+            <button class="btn category_btn location_btn">
+              <%= location %>
+            </button>
+          </a>
+          <% }) %>
+
+          <div class="line"></div>
+          <h3 class="categories_heading">Date</h3>
+
+          <a href="/category/ascend">
+            <button class="btn ascend_btn">Ascend</button>
+          </a>
+
+          <a href="/category/descend">
+            <button class="btn descend_btn">Descend</button>
+          </a>
+          
+          <form class="form date__form" method="POST" action="/category/dateSort">
+            <fieldset>
+              <input name="start_date" placeholder="start_date" type="date" />
+              <input name="end_date" placeholder="end_date" type="date" />
+              <div>
+                <button class="btn form_btn" type="submit">
+                  GET EVENTS
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </aside>
+
+        <section class="events_section flex-70">
+          <div>
+            <% events.forEach(event=> { %>
+            <div class="event_single">
+              <h2 class="title"><%= event.title %></h2>
+              <h3 class="summary"><%= event.summary %></h3>
+              <a href="/events/<%= event.id  %> ">
+                <button class="btn view_event_btn">View Event</button>
+              </a>
+            </div>
+            <% }) %>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+<%- include('partials/footer') -%>
