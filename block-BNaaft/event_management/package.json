@@ -1,0 +1,23 @@
+{
+  "name": "event-management",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "connect-session": "0.0.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "^4.16.4",
+    "http-errors": "~1.6.3",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.10",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.13",
+    "parse-url": "^5.0.7"
+  }
+}

@@ -1,0 +1,23 @@
+<%- include('partials/header') -%>
+
+
+<section class="main_section">
+    <div class="container">
+      <h2 class="event_list">Events</h2>
+      <div class="flex">
+        
+        <%- include('partials/sideBar') -%> 
+          
+        <section class="events_section flex-70">
+            <% events.forEach(event => { %>
+                <a href="/events/<%=event.id%>">
+                    
+                <h2 class="mt-5 title"><%= event.title %></h2>
+                </a>
+            <% }) %> 
+        </section>
+    </div>
+</div>
+</section>
+
+<%- include('partials/footer') -%>
