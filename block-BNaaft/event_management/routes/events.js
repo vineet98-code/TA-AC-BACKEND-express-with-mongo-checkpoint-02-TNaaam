@@ -5,36 +5,19 @@ var Remark = require('../models/remark');
 
 router.get('/', function (req, res, next) {
   Event.find({}, (err, events) => {
-    if (err) return next(err);
-
-    var allCategories = [];
-    events.filter((event) => {
-      console.log(event);
-      var some = event.event_category;
-      for (var i = 0; i < some.length; i++) {
-        if (!allCategories.includes(some[i])) {
-          allCategories.push(some[i]);
-        }
-      }
+    Event.distinct("event_category", (err, allCategories) =>{
+        if (err) return next(err);
+        console.log(err, allCategories);
+        Event.distinct("location", (err, allLocations) =>{
+          if (err) return next(err);
+          console.log(err, allLocations);
+          res.render('events', {events:events, allCategories: allCategories, allLocations: allLocations });
+        });
     });
-
-    var allLocations = [];
-    events.filter((event) => {
-      if (!allLocations.includes(event.location)) {
-          allLocations.push(event.location);
-      }
-    });
-    res.render('events', { events: events, allCategories: allCategories, allLocations: allLocations });
   });
 });
 
-// // listing all events
-// router.get('/', (req, res, next) => {
-//   Event.find({}, (err, Events) => {
-//      if(err) return next(err)
-//       res.render('events', { Events: Events } )
-//     })
-// });
+
 
 // For rendering article and create form => GET on "/books/new"
 router.get('/new', (req, res, next) => {
@@ -49,47 +32,6 @@ router.post('/', (req, res, next) => {
   });
 });
 
-// // Sending data 
-// router.post('/', function (req, res, next) {
-//     Author.findOne({ author_email: req.body.author_email }, (err, author) => {
-//       if (err) return next(err);
-//       if (!author) {
-//         Author.create(req.body, (err, author) => {
-//           req.body.authorId = author._id;
-//           Book.create(req.body, (err, book) => {
-//             console.log(typeof book.id, typeof book._id);
-//             if (err) return next(err);
-//             Author.findByIdAndUpdate(
-//               author._id,
-//               { $push: { booksId: book.id } },
-//               { new: true },
-//               (err, updatedAuthor) => {
-//                 console.log(updatedAuthor);
-//                 if (err) return next(err);
-//                 res.redirect('/books');
-//               }
-//             );
-//           });
-//         });
-//       } else {
-//         req.body.authorId = author._id;
-//         Book.create(req.body, (err, event) => {
-//             console.log(typeof book.id, typeof book._id);
-//             if (err) return next(err);
-//             Author.findByIdAndUpdate(
-//                 author._id,
-//                 { $push: { booksId: book.id } },
-//                 { new: true },
-//                 (err, updatedAuthor) => {
-//                 console.log(updatedAuthor);
-//                 if (err) return next(err);
-//                 res.redirect('/books');
-//                 }
-//             );
-//         });
-//        }
-//     });
-// });
 
 // Fetch Single event
 router.get('/:id', (req, res, next) => {
@@ -123,12 +65,6 @@ router.get('/:id/delete', (req, res, next) => {
     });
 });
  
-router.post('/', (req, res, next) => {
-  Event.create(req.body, (err, createEvent) => {
-    if (err) return next(err);
-    res.redirect('/events/');
-  });
-});
 
 router.post('/:id', (req, res, next) => {
   var id = req.params.id;
@@ -171,18 +107,37 @@ router.post('/:eventId/remark', (req, res, next) => {
     });
 });
 
-// // This is a articleId because comment hasn't been created
-// router.post('/:id/remark', (req, res, next) => {
-//     var id = req.params.id;
-//     console.log(req.body);
-//     Remark.create(id, (err, comment) => {
-//         if (err) return next(err);
-//         Event.findByIdAndUpdate(eventsId, { $push: { comments: comment.id}}, (err, article) => {
-//             if (err) return next(err);
-//             res.redirect('/events/' + id); // redirect back to the articledetails.ejs
-//         })
-//     });  
-// });
+// date
+router.get('/:ascend', (req, res, next) => {
+  Event.find({}).sort({start_date : 1}).exec((err, events) => {
+    
+    Event.distinct("event_category", (err, allCategories) =>{
+      if (err) return next(err);
+      console.log(err, allCategories);
+      Event.distinct("location", (err, allLocations) =>{
+        if (err) return next(err);
+        console.log(err, allLocations);
+        res.render('events', {events:events, allCategories: allCategories, allLocations: allLocations });
+      });
+  });
+  });  
+})
 
+router.get('/:descend', (req, res, next) => {
+  Event.find({}).sort({start_date : -1}).exec((err, events) => {
+    
+    Event.distinct("event_category", (err, allCategories) =>{
+      if (err) return next(err);
+      console.log(err, allCategories);
+      Event.distinct("location", (err, allLocations) =>{
+        if (err) return next(err);
+        console.log(err, allLocations);
+        res.render('events', {events:events, allCategories: allCategories, allLocations: allLocations });
+      });
+  });
+  });  
+})
+
+// 
 
 module.exports = router;

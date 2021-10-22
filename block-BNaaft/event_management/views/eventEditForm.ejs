@@ -3,21 +3,29 @@
 <section>
     <div class="container">
         <div>
-            <form class="form" action="/event/<%= event.id  %> " method="POST">
+            <form class="form" action="/events/<%= event.id  %> " method="POST">
                 <h3 class="form_heading">Edit Event</h3>
-                <input type="text" name="title" placeholder="Enter your title" value="<%= event.title  %> ">
+
+                <input type="text" name="title" placeholder="Enter your title" value="<%= event.title %>">
                 <textarea name="summary" id="" placeholder="Enter summary" cols="30"
                     rows="10"><%= event.summary  %> </textarea>
-                <input type="text" name="host" placeholder="Enter Host name" value="<%= event.host  %> ">
+
+                <input type="text" name="host" placeholder="Enter Host name" value="<%= event.host %>">
+                
                 <input type="date" name="start_date" placeholder="Select Start date"
-                    value="<%= event.start_date  %> ">
+                    value="<%= event.start_date  %>">
+
                 <input type="date" name="end_date" placeholder="Select End date"
-                    value="<%= event.end_date  %> ">
-                <input type="text" name="category" placeholder="Enter Category" value="<%= event.category  %> ">
+                    value="<%= event.end_date  %>">
+
+                <input type="text" name="category" placeholder="Enter Category" value="<%= event.category  %>">
+
                 <input type="text" name="location" placeholder="Enter location" value="<%=event.location %>">
+
                 <div class="">
                     <button class="btn form_btn" type="submit">Edit Event</button>
                 </div>
+
             </form>
         </div>
     </div>

@@ -77,7 +77,7 @@
     </div>
 </section>
 
-
+<!-- Remarks Edit and delete form -->
 <section class="remark_section_total">
   <div class="container">
       <div class=" flex wrap">
@@ -89,14 +89,14 @@
                           <%= remark.title %>
                       </h2>
                       <h3 class="author">
-                          <%= `Author : ${remark.author }` %>
+                          <%= `Author : ${remark.author}` %>
                       </h3>
-                      <a href="/remark/<%= remark.id  %>/edit ">
+                      <a href="/remarks/<%= remark.id %>/edit ">
                           <button class="btn edit_remark_btn">
                               Edit
                           </button>
                       </a>
-                      <a href="/remark/<%= remark.id  %>/delete ">
+                      <a href="/remarks/<%= remark.id %>/delete ">
                           <button class="btn delete_remark_btn">
                               Delete
                           </button>
@@ -107,7 +107,7 @@
                           <p class="likes_value">
                               <%= remark.likes %>
                           </p>
-                          <a href="/remark/<%= remark.id  %>/increment ">
+                          <a href="/remarks/<%= remark.id %>/likes ">
                               <i class="far fa-thumbs-up likes">
                               </i>
                           </a>
@@ -116,7 +116,7 @@
                           <p class="dislikes_value">
                               <%= remark.dislikes %>
                           </p>
-                          <a href="/remark/<%= remark.id  %>/decrement ">
+                          <a href="/remarks/<%= remark.id  %>/dislikes ">
                               <i class="far fa-thumbs-down dislikes">
                               </i>
                           </a>

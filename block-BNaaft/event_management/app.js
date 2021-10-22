@@ -4,11 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var moment = require('moment');
+moment().format(); 
 
 var indexRouter = require('./routes/index');
 var eventsRouter = require('./routes/events');
 var remarksRouter = require('./routes/remarks');
-var categoriesRouter = require('./routes/categories');
+var categoryRouter = require('./routes/category');
+var locationRouter = require('./routes/location');
+var dateRouter = require('./routes/date');
 
 mongoose.connect(
   'mongodb://localhost/event_management',
@@ -36,7 +40,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/events', eventsRouter);
 app.use('/remarks', remarksRouter);
-app.use('/categories', categoriesRouter);
+app.use('/category', categoryRouter);
+app.use('/location', locationRouter);
+app.use('/date', dateRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
