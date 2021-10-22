@@ -5,10 +5,10 @@ var eventSchema = new Schema({
     title : { type: String, required: true },
     summary: String, 
     host: String,
-    start_date: String,
-    end_date: String,
+    start_date: Date,
+    end_date: Date,
     event_category: [ String ],
-    location: String,
+    location: [ String ],
     likes: { type: Number, default: 0},
     dislikes: { type: Number, default: 0},
     // ref is used to populate the document

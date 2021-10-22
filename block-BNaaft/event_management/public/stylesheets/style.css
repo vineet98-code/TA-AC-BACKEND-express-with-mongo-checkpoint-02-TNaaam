@@ -166,7 +166,6 @@ a {
 .wrap {
   flex-wrap: wrap;
 }
-
 /* header */
 
 .logo {
@@ -176,15 +175,25 @@ a {
   color: #ffffff;
 }
 .btn {
-  background-color: rgb(120, 148, 224);
   font-size: 1.3rem;
-  color: #ffffff;
-  border: 0;
-  outline: 0;
   padding: 0.5rem 1.5rem;
-  font-weight: bold;
-  border-radius: 6px;
+  color: #ffffff;
+  
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: inset 0 0 0 0 #f9e506;
+  outline: none;
+  border: none;
+  transition: ease-in-out 0.3%;
+  background-color: #ff0044;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+button:hover {
+  box-shadow: inset 190px 0 0 0 #f9e506;
   cursor: pointer;
+  color: #000;
 }
 .header {
   padding: 0.6rem;
@@ -326,8 +335,9 @@ form {
 }
 .category {
   font-size: 1.6rem;
-  color: #ebd72a;
+  color: green;
   margin-top: 1rem;
+  
 }
 .location {
   font-size: 1.2rem;
@@ -464,4 +474,7 @@ main {
 .descend_btn {
   background-color: #ec6ead;
   margin: 1rem;
+}
+.mt-5 {
+  margin-top: 1.5rem;
 }

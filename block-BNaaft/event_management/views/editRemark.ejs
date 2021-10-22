@@ -1,15 +1,11 @@
 <%- include('partials/header') -%>
 
-<form action="/remark/<%= remark._id%>" method="POST">
+<form action="/remark/:id/edit/<%= remark.id %>" method="POST">
     <fieldset>
-      <input
-        name="author"
-        type="text"
-        placeholder="author"
-        value="<%= remark.author%>"
-      />
-      <textarea name="content"><%= remark.title%></textarea>
-      <input type="submit" value="add" />
+      <h2>Edit Remarks</h2>
+      <input name="title" type="text" placeholder="Update Reamrks"><%= remark.title %></input>
+      <input name="author" type="text" placeholder="author" value="<%= remark.author %>" />
+      <input type="submit" value="Update Remark" />
     </fieldset>
 </form>
 
